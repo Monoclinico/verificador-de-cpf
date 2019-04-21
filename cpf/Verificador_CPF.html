@@ -2,6 +2,7 @@
 <html lang="pt-br">
   <head>
 		<meta charset="utf-8"/>
+		<meta name="author" content="Matheus Sanches">
 		<style>
 			body {
 				background-image: url("fundocpf.png");
@@ -23,6 +24,8 @@
 				text-align: center;
 				font-size:  3em;
 				margin: 0;
+				color: white;
+				font-weight: 700;
 			}
 			form {
 				display: block;
@@ -43,8 +46,17 @@
 		<script>
 			window.onload = preencheEstadoVazio;
 
-			function preencheEstadoVazio() {
-				document.getElementById("estado").innerHTML = "Coloque o CPF";
+			function preencheEstadoVazio(res) {
+				if (document.getElementById('textoCPF').value.length == 0 ) {
+					document.getElementById("estado").innerHTML = 'Digite o CPF';
+					document.getElementById("textoCPF").style = "border-color: grey";
+				}else {
+					if (res) {
+						document.getElementById("estado").innerHTML = 'Válido';
+					}else {
+						document.getElementById("estado").innerHTML = 'Inválido';
+					}
+				};
 			}
 			function verificaLetras() {
 				var cpfReal = document.getElementById("textoCPF").value.toString();
@@ -112,12 +124,10 @@
 				var cpfEstado = document.getElementById("estado");
 				if (resposta) {
 					cpfReal.style = "border-color: green;"; 
-					cpfEstado.innerHTML = "Válido";
-					cpfEstado.style = "color: green;"; 
+					preencheEstadoVazio(resposta);
 				}else{
 					cpfReal.style = "border-color: red;";
-					cpfEstado.innerHTML = "Inválido";
-					cpfEstado.style = "color: red;"; 
+					preencheEstadoVazio(resposta);
 				}
 			} 
 		</script>	
@@ -125,10 +135,9 @@
   <body>
 		<main>
 			<div>
-				<p id="estado">&nbsp;</p>
-			
+				<p id="estado"></p>
 				<form>
-					<input id="textoCPF" type="text" autofocus maxlength="11" size="11" placeholder="CPF" onchange="corCaixa()" onkeypress="corCaixa()" oninput="corCaixa()" onsuspend="preencheEstadoVazio()"/>
+					<input id="textoCPF" type="text" autofocus maxlength="11" size="11" placeholder="CPF" onchange="corCaixa()" onkeypress="corCaixa()" oninput="corCaixa()"/>
 				</form>	
 			</div>
 		</main>	
