@@ -9,11 +9,29 @@
 				background-size: 100% 100%; 
 				background-attachment: fixed;
 			}
-			#textoCPF {
+			div {
 				transform: translate(-50%,-50%);
 				position: absolute;
 				top: 50%;
 				left: 50%;
+				width: 40%;
+
+			}
+			#estado {
+				position: relative;
+				display: block;
+				text-align: center;
+				font-size:  3em;
+				margin: 0;
+			}
+			form {
+				display: block;
+				width: 100%;
+			}
+			#textoCPF {
+				position: relative;
+				display: block;
+				margin: auto;
 				padding: 10px;
 				font-size: 3em;
 				border: 7px solid dimgray;
@@ -23,6 +41,11 @@
 
 		</style>	
 		<script>
+			window.onload = preencheEstadoVazio;
+
+			function preencheEstadoVazio() {
+				document.getElementById("estado").innerHTML = "Coloque o CPF";
+			}
 			function verificaLetras() {
 				var cpfReal = document.getElementById("textoCPF").value.toString();
 				var padrao = /\D/;
@@ -86,19 +109,28 @@
 					resposta = validarCPF();
 				}
 				var cpfReal = document.getElementById("textoCPF");
+				var cpfEstado = document.getElementById("estado");
 				if (resposta) {
 					cpfReal.style = "border-color: green;"; 
+					cpfEstado.innerHTML = "Válido";
+					cpfEstado.style = "color: green;"; 
 				}else{
 					cpfReal.style = "border-color: red;";
+					cpfEstado.innerHTML = "Inválido";
+					cpfEstado.style = "color: red;"; 
 				}
 			} 
 		</script>	
   </head>
   <body>
-    <main>
-			<form>
-				<input id="textoCPF" type="text" autofocus maxlength="11" size="11" placeholder="CPF" onchange="corCaixa()" onkeypress="corCaixa()" oninput="corCaixa()"/>
-			</form>	
+		<main>
+			<div>
+				<p id="estado">&nbsp;</p>
+			
+				<form>
+					<input id="textoCPF" type="text" autofocus maxlength="11" size="11" placeholder="CPF" onchange="corCaixa()" onkeypress="corCaixa()" oninput="corCaixa()" onsuspend="preencheEstadoVazio()"/>
+				</form>	
+			</div>
 		</main>	
   </body>
 </html>
