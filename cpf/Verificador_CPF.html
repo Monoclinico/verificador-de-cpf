@@ -1,9 +1,17 @@
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
+    <title>Verificador de CPF</title>
 		<meta charset="utf-8"/>
-		<meta name="author" content="Matheus Sanches">
+    <meta name="author" content="Matheus Sanches">
+    <link rel="icon" href="imagens/icon-programador.ico"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=ANSI"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
 		<style>
+      * {
+        font-size: 15px;
+      }
 			body {
 				background-image: url(fundocpf.png);
 				background-repeat: no-repeat;
@@ -11,18 +19,20 @@
 				background-attachment: fixed;
 			}
 			div {
-				transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%);
+        -webkit-transform: translate(-50%,-50%);
+        -moz-transform: translate(-50%,-50%);
+        -ms-transform: translate(-50%,-50%);
 				position: absolute;
 				top: 50%;
 				left: 50%;
-				width: 40%;
-
+        width: 500px;
 			}
 			#estado {
 				position: relative;
 				display: block;
 				text-align: center;
-				font-size:  3em;
+				font-size:  3rem;
 				margin: 0;
 				color: white;
 				font-weight: 700;
@@ -36,12 +46,16 @@
 				display: block;
 				margin: auto;
 				padding: 10px;
-				font-size: 3em;
+				font-size: 3rem;
 				border: 7px solid dimgray;
 				color: white;
 				background-color: black;
 			}
-
+      @media screen and (max-width:380px){
+        #textoCPF, #estado {
+          font-size: 1.5rem;
+        }
+      }
 		</style>	
 		<script>
 			window.onload = preencheEstadoVazio;
